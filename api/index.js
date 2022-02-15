@@ -12,18 +12,19 @@ const app = express()
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())// Require API routes
-const users = require('./routes/users')
 const test = require('./routes/test')
 const greenpass = require('./routes/greenpass')
 
 // Import API Routes
-app.use(users)
 app.use(test)
 app.use(greenpass)
 // Export express app
 module.exports = app
 
-const sync = async () => { await Service.updateAll() }
+const sync = async () => {
+  await Service.updateAll()
+}
+console.log('main')
 sync()
 // Start standalone server if directly running
 if (require.main === module) {

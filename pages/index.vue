@@ -20,8 +20,8 @@
     </v-app-bar>
 
     <v-main class="grey lighten-3">
-      <v-container>
-        <v-row justify="space-around" align="center">
+      <v-container fill-height>
+        <v-row align="center">
           <v-col cols="12" sm="2">
             <v-card class="mx-auto">
               prova
@@ -29,9 +29,9 @@
           </v-col>
 
           <v-col cols="12" sm="8">
-            <v-sheet min-height="70vh" rounded="lg">
+            <v-card elevation="16" outlined class="mx-auto pa-1" max-height="500" max-width="500">
               <QrScanner />
-            </v-sheet>
+            </v-card>
           </v-col>
 
           <v-col cols="12" sm="2">
