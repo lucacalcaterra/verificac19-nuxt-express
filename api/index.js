@@ -1,19 +1,30 @@
+require('dotenv').config()
+const { Service } = require('verificac19-sdk')
+const schedule = require('node-schedule')
+const bodyparser = require('body-parser')
 const express = require('express')
 
+schedule.scheduleJob('0 */12 * * *', () => {
+  Service.updateAll()
+})
 // Create express instance
 const app = express()
-
-// Require API routes
+// Body-parser middleware
+app.use(bodyparser.urlencoded({ extended: false }))
+app.use(bodyparser.json())// Require API routes
 const users = require('./routes/users')
 const test = require('./routes/test')
+const greenpass = require('./routes/greenpass')
 
 // Import API Routes
 app.use(users)
 app.use(test)
-
+app.use(greenpass)
 // Export express app
 module.exports = app
 
+const sync = async () => { await Service.updateAll() }
+sync()
 // Start standalone server if directly running
 if (require.main === module) {
   const port = process.env.PORT || 3001
